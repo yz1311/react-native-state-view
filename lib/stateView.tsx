@@ -21,7 +21,8 @@ import {
     View,
     ViewStyle,
 } from 'react-native';
-import {createReducerResult, LoadDataResultStates, ReducerResult} from "./utils";
+import {createReducerResult, LoadDataResultStates} from "./utils";
+import {ReducerResult} from "../index";
 
 export interface IProps {
     children?: any;
