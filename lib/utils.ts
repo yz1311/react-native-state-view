@@ -50,6 +50,7 @@ export const createPagingResult = <T = unknown>(
         dataList: [],
         loadDataResult: createReducerResult(),
         noMore: false,
+        pageIndex: 1,
         ...(params || {})
     };
 }
@@ -81,6 +82,8 @@ export const dataToPagingResult = <T = unknown>(
         dataList: dataList,
         noMore: noMore,
         loadDataResult: dataToReducerResult(dataList, pageIndex),
+        //如果数据为空，则不自增页码
+        pageIndex: pageIndex + ((pagingList || []).length === 0 ? 0 : 1)
     };
 };
 
