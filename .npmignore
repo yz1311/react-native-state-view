@@ -11,5 +11,4 @@ npm-debug.log
 /android/build
 /ios/**/*xcuserdata*
 /ios/**/*xcshareddata*
-lib/*.ts*
 lib/*.js.map
