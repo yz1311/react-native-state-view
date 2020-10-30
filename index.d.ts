@@ -30,6 +30,8 @@ interface PagingResult<T = unknown> {
     noMore: boolean;
     //数据结果对象
     loadDataResult: ReducerResult;
+    //新的页码数
+    pageIndex: number;
 }
 
 export {
