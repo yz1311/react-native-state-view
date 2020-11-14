@@ -320,7 +320,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                                     style={[styles.errorButton, errorButtonStyle]}
                                     onPress={args => {
                                         let lastTimestamp = loadDataResult.timestamp;
-                                        errorButtonAction(args);
+                                        errorButtonAction();
                                         if (errorReloadDelay > 0) {
                                             setTimeout(() => {
                                                 //判断数据是否已经发生变化
