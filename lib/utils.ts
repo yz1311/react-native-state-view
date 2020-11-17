@@ -57,11 +57,14 @@ export const createPagingResult = <T = unknown>(
 
 /**
  * 转换为分页数据对象
+ * totalPage、totalSize均可以为空，加这两个，主要是针对部分接口，
+ * 如果pageIndex的数量超过现存总量的分页数据，会直接报404，而不是返回一个空数组
  * @param exitList  已存在的列表数据
  * @param pagingList  返回的分页列表数据
  * @param pageIndex  当前页(从1开始)
  * @param pageSize  页数大小(默认为10)
  * @param totalPage 总页数(可能为空)
+ * @param totalSize 总数据量(可能为空)
  */
 export const dataToPagingResult = <T = unknown>(
     exitList: Array<T>,
@@ -69,6 +72,7 @@ export const dataToPagingResult = <T = unknown>(
     pageIndex: number,
     pageSize: number = 10,
     totalPage = undefined,
+    totalSize = undefined,
 ): PagingResult<T> => {
     let dataList = exitList
         .slice(0, (pageIndex - 1) * pageSize)
@@ -76,6 +80,9 @@ export const dataToPagingResult = <T = unknown>(
     let noMore =
         (pagingList || []).length === 0 || (pagingList || []).length < pageSize;
     if (totalPage != undefined && pageIndex == totalPage) {
+        noMore = true;
+    }
+    if (totalSize != undefined && dataList.length >= totalSize) {
         noMore = true;
     }
     return {
