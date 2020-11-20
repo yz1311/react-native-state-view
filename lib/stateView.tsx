@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
         right: 0,
         top: 0,
         bottom: 0,
-        borderRadius: 10,
+        // borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f4f4f4',
