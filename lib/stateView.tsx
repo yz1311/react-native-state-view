@@ -48,6 +48,8 @@ export interface IProps {
     errorTitleStyle?: StyleProp<TextStyle>; //标题样式
     errorButtonStyle?: StyleProp<ViewStyle>; //标题样式
     errorButtonTextStyle?: StyleProp<TextStyle>; //标题样式
+    networkErrorImageRes?: ImageStore; //替换图片原，格式为require('...')
+    serverErrorImageRes?: ImageStore; //替换图片原，格式为require('...')
     errorButtonAction?: any; //标题样式,
     isConnected?: boolean;
     emptyReloadDelay?: number; //空页面时重新加载时的延迟时间(单位:ms)，默认为500，防止出现一闪马上还原的现象
@@ -137,6 +139,8 @@ export default class StateView extends PureComponent<IProps, IState> {
             loadingTitle,
             loadingTitleStyle,
             placeholderImageRes,
+            networkErrorImageRes,
+            serverErrorImageRes,
             placeholderTitle,
             placeholderImageStyle,
             placeholderView,
@@ -259,7 +263,10 @@ export default class StateView extends PureComponent<IProps, IState> {
                 }
                 let imageRes;
                 if (!loadDataResult.error.status) {
-                    imageRes = require('./img/app_error_network.png');
+                    imageRes =
+                        networkErrorImageRes
+                            ? networkErrorImageRes
+                            : require('./img/app_error_network.png')
                     //分为无网络和服务器挂了
                     if (!isConnected) {
                         detailTitle = '网络连接失败，请检查网络';
@@ -274,7 +281,10 @@ export default class StateView extends PureComponent<IProps, IState> {
                 }
                 //此时是服务器错误 status = 300+
                 else {
-                    imageRes = require('./img/app_error_server.png');
+                    imageRes =
+                        serverErrorImageRes
+                            ? serverErrorImageRes
+                            : require('./img/app_error_server.png')
                     //不同时显示默认值
                     if (detailTitle == tempErrorTitle) {
                         detailTitle = '';

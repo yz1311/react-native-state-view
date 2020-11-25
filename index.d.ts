@@ -31,7 +31,7 @@ interface PagingResult<T = unknown> {
     //数据结果对象
     loadDataResult: ReducerResult;
     //新的页码数
-    pageIndex: number;
+    pageIndex?: number;
 }
 
 export {

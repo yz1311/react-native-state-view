@@ -1,6 +1,6 @@
 {
   "name": "@yz1311/react-native-state-view",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "占位组件，根据loading、content、error、empty等状态显示不同的内容",
   "main": "index.js",
   "types": "index.d.ts",
@@ -19,6 +19,7 @@
     "state-view",
     "teaset",
     "react-native-state-view",
+
     "stateful"
   ],
   "author": "yz1311",
