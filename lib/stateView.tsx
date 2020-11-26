@@ -262,7 +262,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                     tempErrorTitle = errorTitle;
                 }
                 let imageRes;
-                if (!loadDataResult.error.status) {
+                if (!loadDataResult.error || !loadDataResult.error.status) {
                     imageRes =
                         networkErrorImageRes
                             ? networkErrorImageRes
