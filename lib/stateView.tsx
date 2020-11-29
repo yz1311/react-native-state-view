@@ -192,7 +192,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                         onPress={args => {
                             if (errorButtonAction) {
                                 let lastTimestamp = loadDataResult.timestamp;
-                                errorButtonAction(args);
+                                errorButtonAction();
                                 if (emptyReloadDelay > 0) {
                                     setTimeout(() => {
                                         //判断数据是否已经发生变化
