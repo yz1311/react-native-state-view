@@ -290,9 +290,22 @@ export default class StateView extends PureComponent<IProps, IState> {
                         detailTitle = '';
                     }
                 }
-                return (
+                overlayView = (
                     //为了将界面撑起来，并且为后面的下拉刷新作准备
-                    <View style={[styles.container, containerStyle]}>
+                    <View
+                        style={[
+                            styles.container,
+                            {
+                                position: 'absolute',
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0,
+                                backgroundColor: '#f4f4f4',
+                            },
+                            containerStyle,
+                        ]}
+                    >
                         <View style={[styles.body, bodyStyle]}>
                             <Image
                                 style={[styles.placeholderImg]}
@@ -365,6 +378,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                         </View>
                     </View>
                 );
+                break;
             case LoadDataResultStates.none:
             //有数据，则直接显示
             case LoadDataResultStates.content:
