@@ -79,7 +79,8 @@ export default class StateView extends PureComponent<IProps, IState> {
     constructor(props:IProps) {
         super(props);
         this.state = {
-            dataState: props.loadDataResult ? props.loadDataResult.state : initialLoadDataResultState
+            dataState: props.loadDataResult && props.loadDataResult.state ?
+                props.loadDataResult.state : initialLoadDataResultState
         };
     }
 
