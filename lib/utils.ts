@@ -112,11 +112,13 @@ export const dataToReducerResult = (
             error: data,
             msg: data.message,
             state:
+                //如果是分页并且不是第一页的情况下，则加载错误时不显示整个错误页面
                 pageIndex > 1
                     ? LoadDataResultStates.content
                     : LoadDataResultStates.error,
         } as ReducerResult;
     }
+    //如果是数组，就说明是常规的列表对象，空数组表示数据为空
     if (Array.isArray(data)) {
         return {
             ...createReducerResult(),
@@ -129,6 +131,7 @@ export const dataToReducerResult = (
             pageIndex: pageIndex,
         } as ReducerResult;
     }
+    //如果是空字符串或者空对象，则表示数据为空
     if (
         data == undefined ||
         data == '' ||

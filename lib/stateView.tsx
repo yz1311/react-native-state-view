@@ -76,9 +76,12 @@ export default class StateView extends PureComponent<IProps, IState> {
         errorReloadDelay: 0,
     };
 
-    readonly state: IState = {
-        dataState: initialLoadDataResultState,
-    };
+    constructor(props:IProps) {
+        super(props);
+        this.state = {
+            dataState: props.loadDataResult ? props.loadDataResult.state : initialLoadDataResultState
+        };
+    }
 
     componentDidMount() {
         AppState.addEventListener('change', this._handleAppStateChange);
@@ -397,11 +400,6 @@ export default class StateView extends PureComponent<IProps, IState> {
 
 const styles = StyleSheet.create({
     container: {
-        // position:'absolute',
-        // top:0,
-        // bottom:0,
-        // left:0,
-        // right:0,
         flex: 1,
         // alignItems:'center',
         justifyContent: 'center',
