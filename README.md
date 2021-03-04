@@ -1,4 +1,4 @@
-# teaset-code-push
+# react-native-state-view
 
 [![npm version](http://img.shields.io/npm/v/@yz1311/react-native-state-view.svg?style=flat-square)](https://npmjs.org/package/@yz1311/react-native-state-view "View this project on npm")
 [![npm version](http://img.shields.io/npm/dm/@yz1311/react-native-state-view.svg?style=flat-square)](https://npmjs.org/package/@yz1311/react-native-state-view "View this project on npm")
@@ -22,16 +22,13 @@
 该库是配合[react-native-code-push](https://github.com/microsoft/react-native-code-push)使用的
 
 ```
-$ npm i @yz1311/teaset-code-push --save
+$ npm i @yz1311/react-native-state-view --save
 
 或者 
 
-$ yarn add @yz1311/teaset-code-push
+$ yarn add @yz1311/react-native-state-view
 ```
 
-另外,需要安装
-
-[react-native-webview](https://github.com/react-native-community/react-native-webview): 用于展示更新对话框的内容
 
 ## 基础用法
 
@@ -47,7 +44,7 @@ export default codePush(codePushOptions)(Root);
 > 2.将组件包裹住app.js
 
 ```javascript
-import CodePushHandler from '@yz1311/teaset-code-push';
+import CodePushHandler from '@yz1311/react-native-state-view';
 
 // Decorator用法; 需要 ES7 支持
 @CodePushHandler({isDebugMode: false})
@@ -89,7 +86,7 @@ code-push release-react test-android android --t 1.0.1 --dev false -d Production
 在app的入口处，修改defaultProps即可,支持的属性查看[index.d.ts]('./index.d.ts')
 
 ```
-import {UpdateView} from '@yz1311/teaset-code-push';
+import {UpdateView} from '@yz1311/react-native-state-view';
 ...
 UpdateView.defaultProps.btnText = '立马更新';
 ```
@@ -105,7 +102,7 @@ UpdateView.defaultProps.btnText = '立马更新';
 譬如只有在wifi状态下才下载安装包
 
 ```
-import {CodePushHandler} from '@yz1311/teaset-code-push';
+import {CodePushHandler} from '@yz1311/react-native-state-view';
 import NetInfo from '@react-native-community/netinfo';
 
 ...

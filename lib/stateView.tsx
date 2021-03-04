@@ -25,6 +25,10 @@ import {createReducerResult, LoadDataResultStates} from "./utils";
 import {ReducerResult} from "../index";
 
 export interface IProps {
+    /**
+     * 禁用，为true时直接返回children，整个组件相当于一个空壳
+     */
+    disabled?: boolean;
     children?: any;
     loadDataResult: ReducerResult;
     containerStyle?: StyleProp<ViewStyle>;
@@ -74,6 +78,7 @@ export default class StateView extends PureComponent<IProps, IState> {
         isConnected: true,
         emptyReloadDelay: 0,
         errorReloadDelay: 0,
+        disabled: false
     };
 
     constructor(props:IProps) {
@@ -134,6 +139,7 @@ export default class StateView extends PureComponent<IProps, IState> {
 
     render () {
         const {
+            disabled,
             containerStyle,
             bodyStyle,
             children,
@@ -159,6 +165,9 @@ export default class StateView extends PureComponent<IProps, IState> {
             errorReloadDelay,
         } = this.props;
         const {dataState} = this.state;
+        if(disabled) {
+            return this.props.children;
+        }
         //从外部调用静态属性可以，但是组件内部调用的话为undefined,不知道为啥
         //所以用常量代替
         let overlayView = null;
