@@ -14,6 +14,7 @@ import {
     Image,
     ImageStore,
     ImageStyle,
+    NativeEventSubscription,
     StyleProp,
     StyleSheet,
     Text, TextStyle,
@@ -81,6 +82,8 @@ export default class StateView extends PureComponent<IProps, IState> {
         disabled: false
     };
 
+    private appStateListener:NativeEventSubscription;
+
     constructor(props:IProps) {
         super(props);
         this.state = {
@@ -90,7 +93,8 @@ export default class StateView extends PureComponent<IProps, IState> {
     }
 
     componentDidMount() {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        //@ts-ignore
+        this.appStateListener = AppState.addEventListener('change', this._handleAppStateChange);
     }
 
     componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, snapshot?: any) {
@@ -120,7 +124,8 @@ export default class StateView extends PureComponent<IProps, IState> {
     }
 
     componentWillUnmount() {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        //兼容RN0.69.x
+        this.appStateListener && this.appStateListener.remove ? this.appStateListener.remove() : AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
     _handleAppStateChange = appState => {
