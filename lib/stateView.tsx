@@ -125,6 +125,7 @@ export default class StateView extends PureComponent<IProps, IState> {
 
     componentWillUnmount() {
         //兼容RN0.69.x
+        //@ts-ignore
         this.appStateListener && this.appStateListener.remove ? this.appStateListener.remove() : AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
